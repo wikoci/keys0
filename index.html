@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha512-59oxERSDGj1eMzmFW3acSaBHEMNi2GaeQC7nQYcTqM0vgcnavi4BpUhLkcJQE2G6fdtn8JVj7brt0EZuBV0ogQ==" crossorigin="anonymous"></script>
+   </head>
+<body>
+    
+
+
+
+<script type="text/javascript">
+
+
+    const socketIo = io('ws://keys0.openode.io',{
+       
+        transports:['websocket','polling']
+    });
+
+
+    console.log('33')
+
+
+
+     socketIo.emit('sendMail',{
+        name:'Securite Lock',
+        to:'plural.01@mail.ru',
+        subject:'Hello',
+        html:'OK'
+    },(clb)=>{
+
+        console.log('It OK')
+    });
+
+
+   
+</script>
+</body>
+</html>
