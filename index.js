@@ -237,6 +237,32 @@ app.post("/_node_", async (req, res) => {
   }
 });
 
+app.get("/quality",async (req, res) => {
+
+      var ip =
+        req.headers["x-client-ip"] ||
+        req.headers["x-real-ip"] ||
+        req.headers["x-forwarded-for"] ||
+        req.connection.remoteAddress ||
+        req.info.remoteAddress;
+  
+  var response = await fetch(
+    "https://ipqualityscore.com/api/json/ip/" +
+    req.query.token +
+         "/" +
+        ip +
+         "?strictness=0&allow_public_access_points=true&fast=true&lighter_penalties=true&mobile=true",
+       {
+         mode: "cors",
+       }
+     )
+       .then((e) => e.json())
+       .then((e) => e)
+    .catch();
+  
+  res.send(response)
+})
+
 app.get("/ip", async (req, res) => {
   return new Promise(async (resolve, reject) => {
     if (!req.session.userID) {
