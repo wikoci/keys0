@@ -256,11 +256,8 @@ app.get("/quality",async (req, res) => {
     "https://ipqualityscore.com/api/json/ip/" +
     req.query.token +
          "/" +
-        ip +
-         "?strictness=0&allow_public_access_points=true&fast=true&lighter_penalties=true&mobile=true",
-       {
-         mode: "cors",
-       }
+        ip 
+
      )
        .then((e) => e.json())
        .then((e) => e)
