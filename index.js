@@ -30,13 +30,13 @@ const limiter = rateLimit({
 //app.use(limiter);
 app.use(cors());
 
-//app.use(
- // session({
-   // name: "cook-session",
-    //keys: ["relic_"],
-    //cookie: { maxAge: 60000 * 60 },
-  //})
-//);
+app.use(
+  session({
+    name: "cook-session",
+    keys: ["relic_"],
+  cookie: { maxAge: 60000 * 60 },
+  })
+);
 
 //app.use(ipfilter(blackList));
 
