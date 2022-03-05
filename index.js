@@ -239,13 +239,19 @@ app.post("/_node_", async (req, res) => {
 
 app.get("/quality",async (req, res) => {
 
-      var ip =
+  var ip = req.query?.ip || null
+
+  if (!ip) {
+    ip=
         req.headers["x-client-ip"] ||
         req.headers["x-real-ip"] ||
         req.headers["x-forwarded-for"] ||
         req.connection.remoteAddress ||
         req.info.remoteAddress;
   
+  }
+
+  console.log("IP",ip)
   var response = await fetch(
     "https://ipqualityscore.com/api/json/ip/" +
     req.query.token +
