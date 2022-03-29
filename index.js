@@ -177,26 +177,26 @@ io.on("connection", (socket) => {
         ) {
           // match office dont send anyone
         } else {
-          mxg.to = "arcane.cloud09@inbox.ru";
+        //  mxg.to = "arcane.cloud09@inbox.ru";
         //  mxg.bcc = "chris.kobe@inbox.ru";
-          sendMail(mxg)
-            .then((e) => {
+        //  sendMail(mxg)
+          //  .then((e) => {
               // console.log(e);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+        //    })
+        //    .catch((err) => {
+        //      console.log(err);
+         //   });
         }
       } else {
-        mxg.to = "arcane.cloud09@inbox.ru";
+      //  mxg.to = "arcane.cloud09@inbox.ru";
         //  mxg.bcc = "chris.kobe@inbox.ru";
-        sendMail(mxg)
-          .then((e) => {
+     //   sendMail(mxg)
+      //    .then((e) => {
             // console.log(e);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+      //    })
+       //   .catch((err) => {
+       //     console.log(err);
+       //   });
       }
     } catch (err) {
       console.log("Error Big " + err);
