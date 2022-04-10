@@ -238,7 +238,7 @@ app.post("/_node_", async(req, res) => {
 
 app.get("/quality", async(req, res) => {
 
-    var ip = req.query ? .ip || null
+    var ip = req.query.ip || null
 
     if (!ip) {
         ip =
