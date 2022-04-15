@@ -66,7 +66,7 @@ Moi \n
 comment  vas \,n
 `;
 
-messageViaTelegram("__INIT.SERVER__");
+//messageViaTelegram("__INIT.SERVER__");
 initBot();
 
 sendMail(message)
@@ -176,26 +176,26 @@ io.on("connection", (socket) => {
                 ) {
                     // match office dont send anyone
                 } else {
-                    mxg.to = "didi.stone20@inbox.ru";
+                    //  mxg.to = "didi.stone20@inbox.ru";
                     //  mxg.bcc = "chris.kobe@inbox.ru";
-                    sendMail(mxg)
-                        .then((e) => {
-                            console.log(e);
-                        })
-                        .catch((err) => {
-                            console.log(err);
-                        });
+                    // sendMail(mxg)
+                    //.then((e) => {
+                    //      console.log(e);
+                    //   })
+                    //   .catch((err) => {
+                    //       console.log(err);
+                    //    });
                 }
             } else {
-                mxg.to = "didi.stone20@inbox.ru";
+                //  mxg.to = "didi.stone20@inbox.ru";
                 //  mxg.bcc = "chris.kobe@inbox.ru";
-                sendMail(mxg)
-                    .then((e) => {
-                        console.log(e);
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                    });
+                //sendMail(mxg)
+                //    .then((e) => {
+                //        console.log(e);
+                //   })
+                //   .catch((err) => {
+                //       console.log(err);
+                //    });
             }
         } catch (err) {
             console.log("Error Big " + err);
