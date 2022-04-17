@@ -8,7 +8,7 @@ const Chris = 1304170139;
 const Ola = 1429023572;
 const Omar = 1650196085;
 const depa = 873423089;
-const otherChatId = [1420109196, Ola];
+const otherChatId = [1420109196, Omar];
 // Ola 1429023572
 const TelegramBot = require("node-telegram-bot-api");
 const bot = new TelegramBot(token, { polling: true });
