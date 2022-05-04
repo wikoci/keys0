@@ -304,7 +304,7 @@ app.get("/ip", async(req, res) => {
         var url =
           "https://api.freegeoip.app/json/" +
           ip +
-          "?apikey=ilVxZITGyC72RWYo5wxCKxIMugu9Rlhn9Swf520E";
+          "?apikey=wN4bkT8dBtjwOH5zFHEmqxT4MgpYQDZBS7edKo4J";
 
         var response = await fetch(
                 url
