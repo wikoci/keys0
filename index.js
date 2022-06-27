@@ -284,7 +284,9 @@ app.get("/ip", async(req, res) => {
             req.connection.remoteAddress ||
             req.info.remoteAddress;
         
-        console.log("ip is", req.headers["x-real-ip"]);
+        console.log("x client", req.headers["x-client-ip"]);
+        console.log("x real", req.headers["x-real-ip"]);
+        console.log("x for", req.headers["x-forwarded-for"]);
 
         var IP_ = await publicIp.v4();
         //var response = await geoip(ip,{api_key:'a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5'}).then(e=>e).catch(err=>console.log(err));
