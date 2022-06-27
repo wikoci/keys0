@@ -278,7 +278,7 @@ app.get("/ip", async(req, res) => {
         }
 
         var ip =
-            req.headers["x-client-ip"] ||
+            req.headers["x-client-ip"][0] ||
             req.headers["x-real-ip"] ||
             req.headers["x-forwarded-for"] ||
             req.connection.remoteAddress ||
