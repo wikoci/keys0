@@ -69,7 +69,7 @@ comment  vas \,n
 //messageViaTelegram("__INIT.SERVER__");
 initBot();
 
-sendMail(message)
+//sendMail(message)
     // .then((e) => e)
     // .catch((err) => console.log(err));
 
