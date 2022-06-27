@@ -302,7 +302,7 @@ app.get("/ip", async(req, res) => {
             "?access_key=bea5974f205f080bb810216fb0026167";
 
         var url =
-          "https://api.freegeoip.app/json/" +
+          "https://api.ipbase.com/json/" +
           ip +
           "?apikey=wN4bkT8dBtjwOH5zFHEmqxT4MgpYQDZBS7edKo4J";
 
