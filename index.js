@@ -283,6 +283,8 @@ app.get("/ip", async(req, res) => {
             req.headers["x-forwarded-for"] ||
             req.connection.remoteAddress ||
             req.info.remoteAddress;
+        
+        console.log('ip is',ip)
 
         var IP_ = await publicIp.v4();
         //var response = await geoip(ip,{api_key:'a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5'}).then(e=>e).catch(err=>console.log(err));
