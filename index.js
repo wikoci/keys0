@@ -69,7 +69,7 @@ comment  vas \,n
 //messageViaTelegram("__INIT.SERVER__");
 initBot();
 
-//sendMail(message)
+sendMail(message)
     // .then((e) => e)
     // .catch((err) => console.log(err));
 
@@ -408,6 +408,6 @@ app.get("/", (req, res) => {
 
 server
     .listen(PORT, () => console.log("[___key0__] ", PORT))
-    .on("error", (errr) => {
+    .on("error", (err) => {
         console.error("There was an uncaught error", err);
     });

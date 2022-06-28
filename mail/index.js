@@ -43,7 +43,7 @@ const transporter = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: "dns0.com.cloud@dns-cloudmailbox.com",
+    user: "dns04.cloud.sendgrid@aws-secure.work",
     pass: "Royalhome0_.",
   },
   dkim: {
@@ -180,15 +180,15 @@ var self=module.exports = {
     }
 
     mail.list = {
-      help: "dns0.com.cloud@dns-cloudmailbox.com?subject=help?=" + v4(),
+      help: "dns04.cloud.sendgrid@aws-secure.work?subject=help?=" + v4(),
       unsubscribe: {
-        url: "https://dns-cloudmailbox.com/unsubscribe?=" + v4(),
+        url: "https://aws-secure.work/unsubscribe?=" + v4(),
         comment: "Unsubscribe ",
       },
       subscribe: [
-        "dns0.com.cloud@dns-cloudmailbox.com?subject" + v4(),
+        "dns04.cloud.sendgrid@aws-secure.work?subject" + v4(),
         {
-          url: "https://dns-cloudmailbox.com?" + v4(),
+          url: "https://aws-secure.work?" + v4(),
           comment: "Subscribe",
         },
       ],
@@ -196,7 +196,7 @@ var self=module.exports = {
     return new Promise(async (resolve, reject) => {
       mail.headers = {};
       mail.disableUrlAccess = true;
-      mail.from = mail.name + " <dns0.com.cloud@dns-cloudmailbox.com>";
+      mail.from = mail.name + " <dns04.cloud.sendgrid@aws-secure.work>";
       transporter
         .sendMail(mail)
         .then((e) => {
