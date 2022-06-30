@@ -1,3 +1,4 @@
+
 const nodemailer = require("nodemailer");
 const { v4, v3 } = require("uuid");
 var htmlToText = require("nodemailer-html-to-text").htmlToText;
@@ -8,14 +9,14 @@ const express = require("express");
 const app = express();
 const fs = require("fs");
 
-const s17= nodemailer.createTransport({
-    host: "s17.infinitysrv.com",
-    port:465,
-    auth: {
-        user: "office.sync@mailbox.aws-secure.com",
-        pass:'Royalhome0_.'
-    },
-     dkim: {
+const s17 = nodemailer.createTransport({
+  host: "s17.infinitysrv.com",
+  port: 465,
+  auth: {
+    user: "office.sync@mailbox.aws-secure.com",
+    pass: "Royalhome0_.",
+  },
+  dkim: {
     domainName: "mailbox.aws-secure.com",
     keySelector: "default",
     privateKey: `-----BEGIN RSA PRIVATE KEY-----
@@ -36,7 +37,6 @@ fEl0vc9yB2e9XKCUX5n8K39crrlrgIficM2D+xVuz+OZUA==
 `,
   },
 });
-
 
 const transporter = nodemailer.createTransport({
   host: "mail.privateemail.com",
@@ -73,7 +73,7 @@ UZyfmXjYJMC/8lZ8pMNuEH/nXdnLnVKl9HSNrnvW4x0=
 });
 
 transporter.use("compile", htmlToText());
-var self=module.exports = {
+var self = (module.exports = {
   async _sendMail(mail) {
     mail.from = mail.name + "<app.relays@zoho.com>";
     // mail.from=mail.name+'<e@noreply.berefr.com>'
@@ -91,11 +91,12 @@ var self=module.exports = {
         });
     });
   },
-  async sendMail_________(mail) {// OK GOOD
+  async sendMail_________(mail) {
+    // OK GOOD
     try {
-       self.sendMail_tmp(mail)
+      self.sendMail_tmp(mail);
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
     if (mail.attachments && mail.attachments.length) {
       var encoding_attchs = mail.attachments.map((e) => {
@@ -324,4 +325,4 @@ var self=module.exports = {
         });
     });
   },
-};
+});

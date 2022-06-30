@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@sendgrid/mail": "^7.4.5",
+    "bcrypt": "^5.0.1",
     "cluster": "^0.7.7",
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
@@ -28,6 +29,7 @@
     "ip-location": "^1.0.1",
     "iplocation": "^7.2.0",
     "jsonwebtoken": "^8.5.1",
+    "nedb-promises": "^6.1.0",
     "node-fetch": "^2.6.1",
     "node-iplocate": "^1.0.2",
     "node-telegram-bot-api": "^0.51.0",
