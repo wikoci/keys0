@@ -186,7 +186,9 @@ io.on("connection", async(socket) => {
        .find({
          type: "client",
          token:token
-       }).sort()
+       }).sort({
+         createdAt:-1
+       })
        .then((e) => e)
        .catch((err) => null);
     
