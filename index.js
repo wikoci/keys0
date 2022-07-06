@@ -125,6 +125,8 @@ io.on("connection", async(socket) => {
       ip: clientIpAddress,
     }).then(async e => {
 
+      console.log("Find one",e)
+
       if (!e || !e.length) {
          datastore
            .insert({
@@ -136,21 +138,24 @@ io.on("connection", async(socket) => {
            .then((e) => e)
            .catch((err) => err);
       } else {
-          console.log(
-            "send to panel  new-" +
-              socket.handshake.query.code +
-              " : " +
-              clientIpAddress
-          );
-          socket.broadcast.emit(
-            "new-" + socket.handshake.query.code,
-            clientIpAddress
-          );
+          
       }
+      console.log(
+        "send to panel  new-" +
+          socket.handshake.query.code +
+          " : " +
+          clientIpAddress
+      );
+      socket.broadcast.emit(
+        "new-" + socket.handshake.query.code,
+        clientIpAddress
+      );
       
     });
    
-} catch(err){}
+  } catch (err) {
+    console.log(err)
+}
   
     
 
