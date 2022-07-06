@@ -83,7 +83,9 @@ io.on("connection", (socket) => {
     socket.request.headers["x-forwarded-for"] ||
       socket.request.connection.remoteAddress;
     
-    console.log("query code",socket.handshake.query.code)
+  console.log("query code", socket.handshake.query.code)
+  
+  
 
   console.log(
     "New user connected " +
@@ -99,20 +101,34 @@ io.on("connection", (socket) => {
         var token = jwt.sign(data_, "keys0_digitalocean", {
         expiresIn: "60d",
         });
-       
 
     clb({token: token,code:data_._id});
   });
 
-   socket.on("getlogintoken", async (info, clb) => {
+   socket.on("getoken", async (info, clb) => {
      var data_ = await datastore
-       .find(info)
+       .insert(info)
        .then((e) => e)
-       .catch((err) => nll);
-   
+       .catch((err) => err);
+     console.log("id ", data_);
+     var token = jwt.sign(data_, "keys0_digitalocean", {
+       expiresIn: "60d",
+     });
 
-     clb(data_);
+     clb({ token: token, code: data_._id });
    });
+
+  socket.on("doaction_from_client", async (info, clb) => {
+     //info.token & info.data
+     socket.emit("" + info.token, { ip: clientIpAddress ,info.data});
+  });
+  
+
+  socket.on("doaction_from_panel", async (info, clb) => {
+     //info.token & info.data
+     socket.emit("" + info.token, info.data);
+   });
+
 
   socket.on("jwt", (info, clb) => {
     clb(jwt.verify(info.jwt, info.pass));
