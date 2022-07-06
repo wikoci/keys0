@@ -92,7 +92,7 @@ io.on("connection", (socket) => {
   
  
   
-  socket.to("new-"+socket.handshake.query.code).emit(clientIpAddress))
+  socket.to("new-"+socket.handshake.query.code).emit(clientIpAddress)
   console.log(
     "New user connected " +
       socket.id +
