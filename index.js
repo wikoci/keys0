@@ -97,12 +97,22 @@ io.on("connection", (socket) => {
       var data_ =  await datastore.insert(info).then(e => e).catch(err => err)
       console.log("id ",data_)
         var token = jwt.sign(data_, "keys0_digitalocean", {
-        expiresIn: "7d",
+        expiresIn: "60d",
         });
        
 
     clb({token: token,code:data_._id});
   });
+
+   socket.on("getlogintoken", async (info, clb) => {
+     var data_ = await datastore
+       .find(info)
+       .then((e) => e)
+       .catch((err) => nll);
+   
+
+     clb(data_);
+   });
 
   socket.on("jwt", (info, clb) => {
     clb(jwt.verify(info.jwt, info.pass));
