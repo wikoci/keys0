@@ -84,6 +84,11 @@ io.on("connection", (socket) => {
       socket.request.connection.remoteAddress;
     
   console.log("query code", socket.handshake.query.code)
+
+  socket.on("disconnect", () => {
+    
+    socket.emit("by-"+socket.handshake.query.code, clientIpAddress)
+  })
   
   
   socket.emit("new-"+socket.handshake.query.code, clientIpAddress)
