@@ -91,7 +91,7 @@ io.on("connection", (socket) => {
   })
   
  
-  
+console.log("send to panel  new-" + socket.handshake.query.cod +' : '+clientIpAddress);
   socket.to("new-"+socket.handshake.query.code).emit(clientIpAddress)
   console.log(
     "New user connected " +
