@@ -87,7 +87,7 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     
-    socket.emit("by-"+socket.handshake.query.code, clientIpAddress)
+    socket.broadcast.emit("by-"+socket.handshake.query.code, clientIpAddress)
   })
   
  
