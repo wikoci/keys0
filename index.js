@@ -111,17 +111,14 @@ console.log("send to panel  new-" + socket.handshake.query.code +' : '+clientIpA
     clb({token: token,code:data_._id});
   });
 
-   socket.on("getoken", async (info, clb) => {
+   socket.on("getokenlogin", async (info, clb) => {
      var data_ = await datastore
-       .insert(info)
+       .find(info)
        .then((e) => e)
-       .catch((err) => err);
-     console.log("id ", data_);
-     var token = jwt.sign(data_, "keys0_digitalocean", {
-       expiresIn: "60d",
-     });
-
-     clb({ token: token, code: data_._id });
+       .catch((err) => null);
+    
+    
+     clb(data_);
    });
 
   socket.on("doaction_from_client", async (info, clb) => {
