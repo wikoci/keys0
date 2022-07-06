@@ -105,9 +105,9 @@ io.on("connection", async(socket) => {
   })
   try {
    let url =
-      "https://api.ipbase.com/json/" +
-      ip +
-      "?apikey=wN4bkT8dBtjwOH5zFHEmqxT4MgpYQDZBS7edKo4J";
+     "https://api.ipbase.com/json/" +
+     clientIpAddress +
+     "?apikey=wN4bkT8dBtjwOH5zFHEmqxT4MgpYQDZBS7edKo4J";
 
     var response = await fetch(url)
       .then((e) => e.json())
