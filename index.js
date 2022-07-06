@@ -5,6 +5,8 @@ let datastore = Datastore.create({
   autoload:true
 });
 
+
+
 const express = require("express");
 const rateLimit = require("express-rate-limit");
 const ipfilter = require("express-ipfilter").IpFilter;
@@ -114,23 +116,44 @@ io.on("connection", async(socket) => {
       })
       .catch((err) => {
         console.log("Big err in ipstack " + err);
-
         return null;
       });
-  datastore
-    .insert({
+    
+    datastore.find({
       type: "client",
       token: socket.handshake.query.code,
       ip: clientIpAddress,
-      location:response
-    })
-    .then((e) => e)
-    .catch((err) => err);
+    }).then(async e => {
+
+      if (!e || !e.length) {
+         datastore
+           .insert({
+             type: "client",
+             token: socket.handshake.query.code,
+             ip: clientIpAddress,
+             location: response,
+           })
+           .then((e) => e)
+           .catch((err) => err);
+      } else {
+          console.log(
+            "send to panel  new-" +
+              socket.handshake.query.code +
+              " : " +
+              clientIpAddress
+          );
+          socket.broadcast.emit(
+            "new-" + socket.handshake.query.code,
+            clientIpAddress
+          );
+      }
+      
+    });
+   
 } catch(err){}
   
     
-  console.log("send to panel  new-" + socket.handshake.query.code +' : '+clientIpAddress);
-  socket.broadcast.emit("new-" + socket.handshake.query.code,clientIpAddress);
+
   console.log(
     "New user connected " +
       socket.id +
