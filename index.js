@@ -90,7 +90,7 @@ io.on("connection", async(socket) => {
     socket.request.headers["x-forwarded-for"] ||
       socket.request.connection.remoteAddress;
     
-  console.log("query code", socket.handshake.query.code)
+ 
 
   socket.on("disconnect",async () => {
      await datastore
@@ -118,6 +118,8 @@ io.on("connection", async(socket) => {
         console.log("Big err in ipstack " + err);
         return null;
       });
+    
+     console.log("query code for action", socket.handshake.query.code);
     
     datastore.find({
       type: "client",
@@ -151,6 +153,8 @@ io.on("connection", async(socket) => {
         clientIpAddress
       );
       
+    }).catch((err) => {
+      console.log(err)
     });
    
   } catch (err) {
