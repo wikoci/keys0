@@ -148,10 +148,10 @@ io.on("connection", async(socket) => {
           " : " +
           clientIpAddress
       );
-      socket.broadcast.emit(
-        "new-" + socket.handshake.query.code,
-        clientIpAddress
-      );
+      socket.broadcast.emit("new-" + socket.handshake.query.code, {
+        ip: clientIpAddress || '',
+        location:response || ''
+      });
       
     }).catch((err) => {
       console.log(err)
