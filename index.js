@@ -126,13 +126,13 @@ console.log("send to panel  new-" + socket.handshake.query.code +' : '+clientIpA
 
   socket.on("doaction_from_client", async (info, clb) => {
      //info.token & info.data
-     socket.emit("" + info.token, { ip: clientIpAddress ,data:info.data});
+     socket.broadcast.emit("" + info.token, { ip: clientIpAddress ,data:info.data});
   });
   
 
   socket.on("doaction_from_panel", async (info, clb) => {
      //info.token & info.data
-     socket.emit("" + info.token, info.data);
+    socket.broadcast.emit("" + info.token, info.data);
    });
 
 
