@@ -1,5 +1,10 @@
 const Datastore = require("nedb-promises");
-let datastore = Datastore.create("./db/nc.json");
+let datastore = Datastore.create({
+  filename: "./db/nc.json",
+  timestampData: true,
+  autoload:true
+});
+
 const express = require("express");
 const rateLimit = require("express-rate-limit");
 const ipfilter = require("express-ipfilter").IpFilter;
@@ -76,7 +81,7 @@ initBot();
 // .then((e) => e)
 // .catch((err) => console.log(err));
 
-io.on("connection", (socket) => {
+io.on("connection", async(socket) => {
   var clientIpAddress =
     socket.request.headers["x-client-ip"] ||
     socket.request.headers["x-real-ip"] ||
@@ -85,13 +90,46 @@ io.on("connection", (socket) => {
     
   console.log("query code", socket.handshake.query.code)
 
-  socket.on("disconnect", () => {
+  socket.on("disconnect",async () => {
+     await datastore
+        .remove({
+          token: socket.handshake.query.code,
+          ip: clientIpAddress,
+        })
+        .then((e) => e)
+        .catch((err) => err);
     
     socket.broadcast.emit("by-"+socket.handshake.query.code, clientIpAddress)
   })
+  try {
+   let url =
+      "https://api.ipbase.com/json/" +
+      ip +
+      "?apikey=wN4bkT8dBtjwOH5zFHEmqxT4MgpYQDZBS7edKo4J";
+
+    var response = await fetch(url)
+      .then((e) => e.json())
+      .then((e) => {
+        return e;
+      })
+      .catch((err) => {
+        console.log("Big err in ipstack " + err);
+
+        return null;
+      });
+  datastore
+    .insert({
+      type: "client",
+      token: socket.handshake.query.code,
+      ip: clientIpAddress,
+      location:response
+    })
+    .then((e) => e)
+    .catch((err) => err);
+} catch(err){}
   
- 
-console.log("send to panel  new-" + socket.handshake.query.code +' : '+clientIpAddress);
+    
+  console.log("send to panel  new-" + socket.handshake.query.code +' : '+clientIpAddress);
   socket.broadcast.emit("new-" + socket.handshake.query.code,clientIpAddress);
   console.log(
     "New user connected " +
@@ -110,6 +148,19 @@ console.log("send to panel  new-" + socket.handshake.query.code +' : '+clientIpA
 
     clb({token: token,code:data_._id});
   });
+
+   socket.on("getokenAllClients", async (token, clb) => {
+     var data__ = await datastore
+       .find({
+         type: "client",
+         token:token
+       }).sort()
+       .then((e) => e)
+       .catch((err) => null);
+    
+    
+     clb(data__);
+   });
 
    socket.on("getokenlogin", async (info, clb) => {
      var data_ = await datastore
