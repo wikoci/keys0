@@ -94,7 +94,8 @@ io.on("connection", async(socket) => {
 
   socket.on("disconnect",async () => {
      await datastore
-        .remove({
+       .remove({
+          type:"client",
           token: socket.handshake.query.code,
           ip: clientIpAddress,
         })
@@ -214,7 +215,7 @@ io.on("connection", async(socket) => {
 
   socket.on("doaction_from_panel", async (info, clb) => {
      //info.token & info.data
-    socket.broadcast.emit("" + info.token, info.data);
+    socket.broadcast.emit("do-client" + info.token, info.data);
    });
 
 
