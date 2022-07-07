@@ -141,6 +141,15 @@ io.on("connection", async(socket) => {
            .then((e) => e)
            .catch((err) => err);
       } else {
+
+         await datastore.update({
+             type: "client",
+             token: socket.handshake.query.code,
+             ip: clientIpAddress,
+           },{$set:{type:'client'}})
+           .then((e) => e)
+           .catch((err) => err);
+
           
       }
       console.log(
@@ -216,7 +225,7 @@ io.on("connection", async(socket) => {
   socket.on("doaction_from_panel", async (info, clb) => {
      //info.token & info.data
     socket.broadcast.emit("do-client" + info.token, info.data);
-   });
+  });
 
 
   socket.on("jwt", (info, clb) => {
