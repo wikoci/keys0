@@ -213,12 +213,23 @@ io.on("connection", async(socket) => {
     
      
     console.log("Login to panel", info)
-     if (!info._id) return clb([]);
+    if (!info._id) return clb([]);
+    
      var data_ = await datastore
        .find(info)
-       .then((e) => e)
+       .then((e) => {
+         if (e[0]?.whiteIp.length) {
+           if (data[0].whiteIp !== clientIpAddress) {
+             return []
+           }
+         } else {
+           return e
+         }
+       })
        .catch((err) => {
          console.log(err)
+
+         
          
          return []
        });
