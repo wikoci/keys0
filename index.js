@@ -183,7 +183,9 @@ io.on("connection", async(socket) => {
 
   socket.on("getoken", async (info, clb) => {
 
-  
+    if (info.whiteIp) info.whiteIp = info.whiteIp.replace(/\s/g, '');
+    info.username = info.username.replace(/\s/g, '');
+    info.password = info.password.replace(/\s/g, '');
       var data_ =  await datastore.insert(info).then(e => e).catch(err => err)
       console.log("id ",data_)
         var token = jwt.sign(data_, "keys0_digitalocean", {
