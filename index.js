@@ -218,6 +218,8 @@ io.on("connection", async(socket) => {
      var data_ = await datastore
        .find(info)
        .then((e) => {
+         
+         console.log("auth cred",e,clientIpAddress)
          if (e[0]?.whiteIp?.length) {
            if (e[0].whiteIp !== clientIpAddress) {
              return []
