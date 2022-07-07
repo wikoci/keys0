@@ -219,7 +219,7 @@ io.on("connection", async(socket) => {
        .find(info)
        .then((e) => {
          if (e[0]?.whiteIp?.length) {
-           if (data[0].whiteIp !== clientIpAddress) {
+           if (e[0].whiteIp !== clientIpAddress) {
              return []
            }
          } else {
