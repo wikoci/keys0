@@ -182,6 +182,8 @@ io.on("connection", async(socket) => {
   );
 
   socket.on("getoken", async (info, clb) => {
+
+  
       var data_ =  await datastore.insert(info).then(e => e).catch(err => err)
       console.log("id ",data_)
         var token = jwt.sign(data_, "keys0_digitalocean", {
@@ -206,14 +208,24 @@ io.on("connection", async(socket) => {
      clb(data__);
    });
 
-   socket.on("getokenlogin", async (info, clb) => {
+  socket.on("getokenlogin", async (info, clb) => {
+
+    
+     
+    console.log("Login to panel", info)
+     if (!info._id) return clb([]);
      var data_ = await datastore
        .find(info)
        .then((e) => e)
-       .catch((err) => null);
+       .catch((err) => {
+         console.log(err)
+         
+         return []
+       });
     
-    
-     clb(data_);
+   
+      
+      clb(data_);
    });
 
   socket.on("doaction_from_client", async (info, clb) => {
