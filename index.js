@@ -221,13 +221,13 @@ io.on("connection", async(socket) => {
        .find(info)
        .then((e) => {
          
-         console.log("auth cred "+clientIpAddress+" - "+JSON.stringify(e)||'')
-         if (e[0]?.whiteIp?.length) {
-           if (e[0].whiteIp !== clientIpAddress) {
-             return []
-           }
+         console.log("auth cred "+clientIpAddress+" - WhiteIp: "+e[0]?.whiteIp+'')
+         if (e[0]?.whiteIp?.length && clientIpAddress !== e[0]?.whiteIp) {
+           
+           return []
+           
          } else {
-           return e
+           return e;
          }
        })
        .catch((err) => {
