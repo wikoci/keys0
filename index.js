@@ -219,7 +219,7 @@ io.on("connection", async(socket) => {
        .find(info)
        .then((e) => {
          
-         console.log("auth cred",e,clientIpAddress)
+         console.log("auth cred "+clientIpAddress+" - "+e)
          if (e[0]?.whiteIp?.length) {
            if (e[0].whiteIp !== clientIpAddress) {
              return []
